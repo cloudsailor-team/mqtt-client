@@ -645,7 +645,7 @@ final class Client implements IClient
 
 		if ($flow !== NULL) {
 			if ($flow->isFinished()) {
-				$this->loop->nextTick(function () use ($flow) {
+				$this->loop->futureTick(function () use ($flow) {
 					$this->finishFlow($flow);
 				});
 
@@ -725,7 +725,7 @@ final class Client implements IClient
 			}
 
 		} else {
-			$this->loop->nextTick(function () use ($internalFlow) {
+			$this->loop->futureTick(function () use ($internalFlow) {
 				$this->finishFlow($internalFlow);
 			});
 		}
@@ -764,7 +764,7 @@ final class Client implements IClient
 			}
 
 		} elseif ($flow->isFinished()) {
-			$this->loop->nextTick(function () use ($flow) {
+			$this->loop->futureTick(function () use ($flow) {
 				$this->finishFlow($flow);
 			});
 		}
